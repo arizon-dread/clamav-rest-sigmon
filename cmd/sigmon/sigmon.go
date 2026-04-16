@@ -24,13 +24,13 @@ func main() {
 	go serveTLS(mux)
 	// Launch server on HTTP
 	srv := &http.Server{
-		Addr:         fmt.Sprintf(":%s", opts["HTTP_PORT"]),
+		Addr:         fmt.Sprintf(":%s", opts["SIGMON_HTTP_PORT"]),
 		Handler:      mux,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
-	log.Printf("Starting sigmon on port %s", opts["HTTP_PORT"])
+	log.Printf("Starting sigmon on port %s", opts["SIGMON_HTTP_PORT"])
 	if err := srv.ListenAndServe(); err != nil {
 		log.Fatalf("Http server shut down unexpectedly due to error, %v", err)
 	}
@@ -47,7 +47,7 @@ func serveTLS(mux *http.ServeMux) {
 	}
 
 	tlsSrv := &http.Server{
-		Addr:         fmt.Sprintf(":%s", opts["HTTPS_PORT"]),
+		Addr:         fmt.Sprintf(":%s", opts["SIGMON_HTTPS_PORT"]),
 		Handler:      mux,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,

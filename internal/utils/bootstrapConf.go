@@ -18,8 +18,8 @@ func GetOpts() map[string]string {
 		part := strings.Split(e, "=")
 		opts[part[0]] = part[1]
 	}
-	if opts["HTTP_PORT"] == "" {
-		opts["HTTP_PORT"] = "9001"
+	if opts["SIGMON_HTTP_PORT"] == "" {
+		opts["SIGMON_HTTP_PORT"] = "9001"
 	}
 	if opts["CLAMAV_REST_URL"] == "" {
 		opts["CLAMAV_REST_URL"] = "http://localhost:9000"
@@ -28,7 +28,7 @@ func GetOpts() map[string]string {
 		opts["MAX_SIGNATURE_AGE_HOURS"] = "26"
 		log.Printf("MAX_SIGNATURE_AGE_HOURS not set, falling back to %v", opts["MAX_SIGNATURE_AGE_HOURS"])
 	}
-	if opts["HTTPS_PORT"] != "" {
+	if opts["SIGMON_HTTPS_PORT"] != "" {
 
 		if opts["SSL_CERT"] == "" {
 			opts["SSL_CERT"] = "/etc/ssl/clamav-rest/server.crt"
