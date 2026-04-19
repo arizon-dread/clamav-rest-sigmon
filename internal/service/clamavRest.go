@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/arizon-dread/clamav-rest-sigmon/internal/utils"
 )
 
 var httpClient *http.Client
@@ -19,7 +21,7 @@ func getClient() *http.Client {
 }
 
 // GetClamavSignatureAge returns the number of hours that has passed since the last signature update
-func GetClamavSignatureAge(opts map[string]string) (int64, error) {
+func getClamavSignatureAge(opts map[string]string) (int64, error) {
 	c := getClient()
 	res, err := c.Get(fmt.Sprintf("%v/version", opts["CLAMAV_REST_URL"]))
 	if err != nil {
@@ -44,4 +46,16 @@ func GetClamavSignatureAge(opts map[string]string) (int64, error) {
 	delta := now - signatureDate.Unix()
 	deltaHours := delta / 60 / 60
 	return deltaHours, nil
+}
+
+func CompareSignAge(maxAgeHours int64) (int64, error) {
+	opts := utils.GetOpts()
+	signatureAge, err := getClamavSignatureAge(opts)
+	if err != nil {
+		return signatureAge, fmt.Errorf("could get signature age from clamav-rest, %v", err)
+	}
+	if signatureAge > maxAgeHours {
+		return signatureAge, fmt.Errorf("signatures haven't updated in %d hours", signatureAge)
+	}
+	return signatureAge, nil
 }
