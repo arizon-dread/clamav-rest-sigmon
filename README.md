@@ -6,8 +6,8 @@ Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE]
 ## Endpoint
 
 * `GET /health/signature-age`
-  * With the option of sending the query parameter `maxAgeHours`, `GET /health/signature-age?maxAgeHours=10`
-  * Will return `200` if the signature age is less than `maxAgeHours`, otherwise`420`
+  * With the option of sending the query parameter `maxAgeHours`, `GET /health/signature-age?maxAgeHours=10`. Setting this value overrides the env var `MAX_SIGNATURE_AGE_HOURS`.
+  * Will return `200` if the signature age is less than `MAX_SIGNATURE_AGE_HOURS`, otherwise`420`
 
 ## Environment variables
 
