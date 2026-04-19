@@ -7,7 +7,7 @@ Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE]
 
 * `GET /health/signature-age`
   * With the option of sending the query parameter `maxAgeHours`, `GET /health/signature-age?maxAgeHours=10`
-  * Will return `200` if the signature age is less than `maxAgeHours``, otherwise`420`
+  * Will return `200` if the signature age is less than `maxAgeHours`, otherwise`420`
 
 ## Environment variables
 
