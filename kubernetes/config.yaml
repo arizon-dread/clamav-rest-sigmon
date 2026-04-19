@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clamav-rest
+data:
+  SIGMON_HTTP_PORT: "9001"
+  SIGMON_HTTPS_PORT: "8443"
+  SSL_CERT: /etc/ssl/clamav-rest/tls.crt
+  SSL_KEY: /etc/ssl/clamav-rest/tls.key
+  CLAMAV_REST_URL: http://localhost:9000
+  MAX_SIGNATURE_AGE_HOURS: "26"
+  #CRONJOB: true #Set this to skip the TLS server and run it as a cronjob instead. 
+  # You can add more clamav-rest settings here and mount both of them in the same pod
+  # or in a standalone pod. If you run sigmon in a sidecar, make sure to choose different
+  # ports for sigmon and clamav-rest so they don't interfere with eachother.
+  MAX_FILE_SIZE: 100M

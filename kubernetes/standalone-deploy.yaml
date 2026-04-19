@@ -1,0 +1,33 @@
+apiGroup: apps/v1
+kind: Deployment
+metadata:
+  name: clamav-rest-sigmon
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clamav-rest-sigmon
+  strategy:
+    rollingUpgrade:
+      maxSurge: 1
+      maxUnavailable: 0
+  minreadySeconds: 20
+  template:
+    metadata:
+      labels:
+        app: clamav-rest-sigmon
+    spec:
+      initContainers:
+        - name: clmaav-rest-sigmon
+          restartPolicy: Always
+          image: docker.io/arizon-dread/clamav-rest-sigmon
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9001
+            - containerPort: 8443
+          envFrom:
+            configMapRef: 
+              - name: clamav-rest
+          env:
+            - name: CLAMAV_REST_URL
+              value: http://clamav-rest-service:9000
