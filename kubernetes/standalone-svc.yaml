@@ -4,9 +4,11 @@ metadata:
   name: clamav-rest-sigmon
 spec:
   ports:
-  - port: 8443
+  - name: https
+    port: 8443
     targetPort: 8443
-  - port: 9001
+  - name: http
+    port: 9001
     targetPort: 9001
   selector:
     app: clamav-rest-sigmon
