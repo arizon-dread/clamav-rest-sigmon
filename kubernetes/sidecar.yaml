@@ -1,17 +1,17 @@
-apiGroup: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: clamav-rest
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: clamav-rest-service
   strategy:
-    rollingUpgrade:
+    rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
-  minreadySeconds: 20
+  minReadySeconds: 20
   template:
     metadata:
       labels:
@@ -20,14 +20,14 @@ spec:
       containers:
         - name: clmaav-rest-sigmon
           restartPolicy: Always
-          image: docker.io/arizon-dread/clamav-rest-sigmon:latest
+          image: docker.io/arizon/clamav-rest-sigmon:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
             - containerPort: 8443
           envFrom:
-            configMapRef: 
-              - name: clamav-rest
+            - configMapRef: 
+                name: clamav-rest
         - name: clamav-rest-service
           image: docker.io/ajilaag/clamav-rest:latest
           imagePullPolicy: Always
