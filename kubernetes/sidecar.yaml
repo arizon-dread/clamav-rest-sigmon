@@ -17,10 +17,10 @@ spec:
       labels:
         app: clamav-rest-service
     spec:
-      initContainers:
+      containers:
         - name: clmaav-rest-sigmon
           restartPolicy: Always
-          image: docker.io/arizon-dread/clamav-rest-sigmon
+          image: docker.io/arizon-dread/clamav-rest-sigmon:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9001
@@ -28,7 +28,6 @@ spec:
           envFrom:
             configMapRef: 
               - name: clamav-rest
-      containers:
         - name: clamav-rest-service
           image: docker.io/ajilaag/clamav-rest:latest
           imagePullPolicy: Always
