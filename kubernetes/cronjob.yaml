@@ -11,7 +11,7 @@ spec:
           containers:
           - name: clmaav-rest-sigmon
             restartPolicy: Always
-            image: docker.io/arizon-dread/clamav-rest-sigmon:latest
+            image: docker.io/arizon/clamav-rest-sigmon:latest
             imagePullPolicy: IfNotPresent
             ports:
               - containerPort: 9001
