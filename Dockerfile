@@ -14,5 +14,5 @@ ARG VERSION
 ENV GENERAL_VERSION=${VERSION}
 #RUN apk add --no-cache libc6-compat musl-dev
 COPY --from=build /usr/local/bin/sigmon/ /go/bin/
-EXPOSE 8080
-ENTRYPOINT [ "./sigmon" ]
+EXPOSE 9001
+ENTRYPOINT [ "/go/bin/sigmon" ]
