@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clamav-rest-sigmon
+spec:
+  schedule: "0 0,12 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: clmaav-rest-sigmon
+            restartPolicy: Always
+            image: docker.io/arizon-dread/clamav-rest-sigmon:latest
+            imagePullPolicy: IfNotPresent
+            ports:
+              - containerPort: 9001
+              - containerPort: 8443
+            envFrom:
+              configMapRef: 
+                - name: clamav-rest
+            env:
+              - name: CLAMAV_REST_URL
+                value: http://clamav-rest-service:9000
+              - name: CRONJOB
+                value: "true"
