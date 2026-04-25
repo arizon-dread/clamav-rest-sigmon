@@ -20,3 +20,9 @@ Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE]
 |  `SSL_KEY`  |  Path to the TLS private key  |  not set, TLS disabled  |  
 |  `CLAMAV_REST_URL`  |  URL to the clamav rest API  |  `http://localhost:9000`  |  
 |  `MAX_SIGNATURE_AGE_HOURS`  | The maximum amount of hours for the signature age before this API starts returning `420`  |  `26`  |  
+
+## Build
+
+### Multi-platform build (amd64 and arm64)
+
+`docker buildx build . -t docker.io/arizon/clamav-rest-sigmon:latest --platform linux/amd64,linux/arm64`
