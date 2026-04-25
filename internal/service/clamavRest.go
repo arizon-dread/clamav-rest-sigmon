@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/arizon-dread/clamav-rest-sigmon/internal/utils"
@@ -52,7 +53,8 @@ func CompareSignAge(maxAgeHours int64) (int64, error) {
 	opts := utils.GetOpts()
 	signatureAge, err := getClamavSignatureAge(opts)
 	if err != nil {
-		return signatureAge, fmt.Errorf("could get signature age from clamav-rest, %v", err)
+		errf := strings.ReplaceAll(err.Error(), `"`, `'`)
+		return signatureAge, fmt.Errorf("could get signature age from clamav-rest, %v", errf)
 	}
 	if signatureAge > maxAgeHours {
 		return signatureAge, fmt.Errorf("signatures haven't updated in %d hours", signatureAge)
