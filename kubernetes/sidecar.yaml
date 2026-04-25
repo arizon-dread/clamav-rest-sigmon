@@ -16,9 +16,10 @@ spec:
     metadata:
       labels:
         app: clamav-rest-service
+        health: clamav-rest-sigmon
     spec:
       containers:
-        - name: clmaav-rest-sigmon
+        - name: clamav-rest-sigmon
           restartPolicy: Always
           image: docker.io/arizon/clamav-rest-sigmon:latest
           imagePullPolicy: IfNotPresent
@@ -42,10 +43,10 @@ spec:
                   key: MAX_FILE_SIZE
           resources:
             requests:
-              cpu: 200m
+              cpu: 500m
               memory: 2000Mi
             limits:
-              cpu: 300m
+              cpu: 600m
               memory: 3000Mi
           startupProbe:
             httpGet:

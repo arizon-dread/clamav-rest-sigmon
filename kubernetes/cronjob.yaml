@@ -8,17 +8,17 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
-          - name: clmaav-rest-sigmon
-            restartPolicy: Always
+          - name: clamav-rest-sigmon
             image: docker.io/arizon/clamav-rest-sigmon:latest
-            imagePullPolicy: IfNotPresent
+            imagePullPolicy: Always
             ports:
               - containerPort: 9001
               - containerPort: 8443
             envFrom:
-              configMapRef: 
-                - name: clamav-rest
+              - configMapRef: 
+                  name: clamav-rest
             env:
               - name: CLAMAV_REST_URL
                 value: http://clamav-rest-service:9000
