@@ -72,7 +72,7 @@ func runCheck() int {
 	if err != nil {
 		return 1
 	}
-	signAge, err := service.CompareSignAge(maxAgeHours)
+	signAge, _, err := service.CompareSignAge(maxAgeHours)
 	if err != nil {
 		log.Printf("%v", err)
 		return 2
