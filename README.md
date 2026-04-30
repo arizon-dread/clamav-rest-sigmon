@@ -26,3 +26,7 @@ Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE]
 ### Multi-platform build (amd64 and arm64)
 
 `docker buildx build . -t docker.io/arizon/clamav-rest-sigmon:latest --platform linux/amd64,linux/arm64`
+
+## Docker image
+
+The docker image can be found on [Docker Hub](https://hub.docker.com/repository/docker/arizon/clamav-rest-sigmon).
