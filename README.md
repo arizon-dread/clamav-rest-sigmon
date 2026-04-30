@@ -5,7 +5,7 @@ Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE]
 
 ## Nota Bene
 
-* When clamav-rest restarts, it will start with the signatures from when the container image was created. After about two minutes, the signatures will be loaded. They are fetched on startup but need time to download and be consumed by clamav before they are fully loaded. During this time, clamav-rest-sigmon will return `420`.
+* When clamav-rest restarts, it will start with the signatures from when the container image was created (unless the signature database is stored on a persistent disk). New signatures are fetched on startup but need time to download and be consumed by clamav before they are fully loaded. After about two minutes, the signatures will be loaded. During this startup phase, clamav-rest-sigmon will return `420`, if run without persistent db storage.
 
 ## Endpoint
 
