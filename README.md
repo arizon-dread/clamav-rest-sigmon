@@ -3,6 +3,10 @@
 This application is meant to be a sidecar, a stand-alone container or a cronjob to monitor the signature age of [clamav-rest](https://github.com/ajilach/clamav-rest) since the project decided not to implement this feature in the core API.
 Feel free to fork or use this alongside `clamav-rest` according to the [LICENSE](./LICENSE)
 
+## Nota Bene
+
+* When clamav-rest restarts, it will start with the signatures from when the container image was created. After about two minutes, the signatures will be loaded. They are fetched on startup but need time to download and be consumed by clamav before they are fully loaded. During this time, clamav-rest-sigmon will return `420`.
+
 ## Endpoint
 
 * `GET /health/signature-age`
