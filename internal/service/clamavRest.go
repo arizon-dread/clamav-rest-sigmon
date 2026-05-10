@@ -22,7 +22,7 @@ func getClient() *http.Client {
 }
 
 // GetClamavSignatureAge returns the number of hours that has passed since the last signature update
-func getClamavSignatureAge(opts map[string]string) (int64, int, error) {
+func getClamavSignatureAge(opts map[string]string) (deltaHours int64, httpStatus int, err error) {
 	c := getClient()
 	res, err := c.Get(fmt.Sprintf("%v/version", opts["CLAMAV_REST_URL"]))
 	if err != nil {
@@ -46,7 +46,7 @@ func getClamavSignatureAge(opts map[string]string) (int64, int, error) {
 	}
 	now := time.Now().Unix()
 	delta := now - signatureDate.Unix()
-	deltaHours := delta / 60 / 60
+	deltaHours = delta / 60 / 60
 	return deltaHours, 200, nil
 }
 
