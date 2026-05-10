@@ -1,3 +1,4 @@
+// Package service contains the code that calls clamav and determines the delta hours and returns accordingly
 package service
 
 import (
