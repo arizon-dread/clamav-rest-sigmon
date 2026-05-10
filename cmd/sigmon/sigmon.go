@@ -70,6 +70,7 @@ func serveTLS(mux *http.ServeMux) {
 func runCheck() int {
 	maxAgeHours, err := strconv.ParseInt(opts["MAX_SIGNATURE_AGE_HOURS"], 10, 64)
 	if err != nil {
+		log.Printf("Uable to parse MAX_SIGNATURE_AGE_HOURS, %v", err)
 		return 1
 	}
 	signAge, _, err := service.CompareSignAge(maxAgeHours)
