@@ -18,7 +18,7 @@ func SignHandler(w http.ResponseWriter, r *http.Request) {
 	var maxAgeHours int64
 	maxAgeHours, err := strconv.ParseInt(opts["MAX_SIGNATURE_AGE_HOURS"], 10, 64)
 	if err != nil {
-		http.Error(w, `{"message": "Could not get maxAgeHours from query string or from config. This should never occur"}`, http.StatusInternalServerError)
+		http.Error(w, `{"message": "Could not get maxAgeHours from config. This should never occur"}`, http.StatusInternalServerError)
 		return
 	}
 	if q.Get("maxAgeHours") != "" {
@@ -36,5 +36,5 @@ func SignHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf(`{"message": "%v"}`, err.Error()), responseCode)
 		return
 	}
-	w.Write([]byte(fmt.Sprintf(`{"message": "Signatures are up-to-date, last check was %d hours ago"}`, signatureAge)))
+	fmt.Fprintf(w, `{"message": "Signatures are up-to-date, last check was %d hours ago"}`, signatureAge)
 }
