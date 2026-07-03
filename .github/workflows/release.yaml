@@ -33,7 +33,7 @@ jobs:
           default_bump: patch
           dry_run: false
           tag_prefix: v
-          custom_tag: v1.2.1
+          custom_tag: 1.2.1
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
