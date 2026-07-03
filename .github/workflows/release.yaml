@@ -10,6 +10,9 @@ env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+permissions:
+  contents: write
+  packages: write
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -29,7 +32,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: patch
           dry_run: false
-
+          tag_prefix: v
+          custom_tag: v1.2.1
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
