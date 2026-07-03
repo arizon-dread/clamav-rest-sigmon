@@ -24,7 +24,7 @@ jobs:
 
       - name: Calculate SemVer tag
         id: tag
-        uses: mathieudutour/github-tag-action@v6.2
+        uses: nickkostov/github-tag-action@v1.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: patch
