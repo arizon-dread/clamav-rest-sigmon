@@ -66,8 +66,8 @@ jobs:
           push: true
           tags: |
             ${{ env.DOCKER_IMAGE_NAME }}:latest
-            ${{ env.DOCKER_IMAGE_NAME }}:${{ needs.version.outputs.new_version }}
+            ${{ env.DOCKER_IMAGE_NAME }}:${{ needs.version.outputs.new_tag }}
           build-args: |
-            VERSION=${{ needs.version.outputs.new_version }}
+            VERSION=${{ needs.version.outputs.new_tag }}
             TARGETOS=linux
             TARGETARCH=${{ matrix.platform == 'linux/amd64' && 'amd64' || 'arm64' }}
