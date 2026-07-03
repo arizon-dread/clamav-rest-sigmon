@@ -27,7 +27,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_versions: patch
+          default_bump: patch
           dry_run: false
 
       - name: Set up QEMU
