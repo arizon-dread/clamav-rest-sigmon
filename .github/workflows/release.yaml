@@ -32,6 +32,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: patch
           dry_run: false
+          fetch_all_tags: true
           tag_prefix: v
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
