@@ -6,7 +6,7 @@ on:
     tags: [ 'v*' ]      # Optional: trigger on tag pushes
 
 env:
-  DOCKER_IMAGE_NAME: docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/clamav-rest-sigmon
+  DOCKER_IMAGE_NAME: docker.io/${{ vars.DOCKER_HUB_USERNAME }}/clamav-rest-sigmon
   DOCKER_HUB_USERNAME: ${{ vars.DOCKER_HUB_USERNAME }}
   DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
